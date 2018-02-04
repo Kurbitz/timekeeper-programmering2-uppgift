@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeKeeper", "TimeKeeper\TimeKeeper.csproj", "{42E2729F-389F-441A-B55D-57AC72F5DC33}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42E2729F-389F-441A-B55D-57AC72F5DC33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42E2729F-389F-441A-B55D-57AC72F5DC33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42E2729F-389F-441A-B55D-57AC72F5DC33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42E2729F-389F-441A-B55D-57AC72F5DC33}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A5A9034-70C0-4328-A146-6B6504605960}
+	EndGlobalSection
+EndGlobal
