@@ -15,6 +15,12 @@ namespace TimeKeeper
         public Form1()
         {
             InitializeComponent();
+            InitializeGridView();
+        }
+
+        private void InitializeGridView()
+        {
+            throw new NotImplementedException();
         }
 
         private void newProjectToolStripMenuItem_Click(object sender, EventArgs e)
