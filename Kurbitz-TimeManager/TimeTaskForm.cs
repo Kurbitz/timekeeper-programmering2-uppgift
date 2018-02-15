@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,8 +16,9 @@ namespace Kurbitz_TimeManager
         Project project;
         Task task;
         private Timer timer;
+        TimeSpan totalElapsedTime;
+        private Stopwatch watch;
         private DateTime startTime;
-        private int elapsedTime = 0;
         private bool timerRunning;
         private bool notFirst = false;
         
@@ -26,47 +28,32 @@ namespace Kurbitz_TimeManager
             this.project = project;
             this.task = task;
 
-            // Create a new timer and trigger the Tick event once per 1000ms.
             timer = new Timer();
-            timer.Interval = 1000;          
-            
-            timer.Tick += new EventHandler(TimerTick);
+            timer.Interval = 1000;
+            timer.Tick += (Timer_Tick);
+
+            watch = new Stopwatch();
+
+
         }
 
-        private void TimerTick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
-            var timeSinceStart = new DateTime(timeSinceStart.Hour, timeSinceStart.Minute, timeSinceStart.Second);
-            elapsedTime++;
-            elapsedTimeDisplay.Text = timeSinceStart.ToString();
+            TimeSpan elapsedTime = watch.Elapsed;
+            totalElapsedTime = elapsedTime;
+            string timeString = totalElapsedTime.Hours.ToString() + ":" + totalElapsedTime.Minutes.ToString() + ":" + totalElapsedTime.Seconds.ToString();
+            elapsedTimeDisplay.Text = timeString;
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            // If the timer already isn't running
-            if (!timerRunning)
-            {
-                // Set start time to now
-                if (!notFirst)
-                {
-                    startTime = DateTime.Now;
-                    notFirst = true;
-                }
-                ;
-                timer.Start();
-                timerRunning = true;
-            }
-            else
-            {
-                timer.Stop();      
-                timerRunning = false;
-            }
+            timer.Start();
+            watch.Start();
         }
 
         private void btnComplete_Click(object sender, EventArgs e)
         {
-            timer.Stop();
-            task.AddTime(totalElapsedTime);
-            Close();            
+      
         }
     }
 }
