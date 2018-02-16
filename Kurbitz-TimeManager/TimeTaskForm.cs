@@ -16,11 +16,12 @@ namespace Kurbitz_TimeManager
         Project project;
         Task task;
         private Timer timer;
-        TimeSpan totalElapsedTime;
+        TimeSpan elapsedTime;
         private Stopwatch watch;
         private DateTime startTime;
+        string timeString;
         private bool timerRunning;
-        private bool notFirst = false;
+        private bool firstRun = true;
         
         public TimeTaskForm(Project project, Task task)
         {            
@@ -39,9 +40,14 @@ namespace Kurbitz_TimeManager
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            TimeSpan elapsedTime = watch.Elapsed;
-            totalElapsedTime = elapsedTime;
-            string timeString = totalElapsedTime.Hours.ToString() + ":" + totalElapsedTime.Minutes.ToString() + ":" + totalElapsedTime.Seconds.ToString();
+            elapsedTime = watch.Elapsed;
+            //timeString = elapsedTime.Hours.ToString() + ":" + elapsedTime.Minutes.ToString() + ":" + elapsedTime.Seconds.ToString();
+
+            timeString =
+                string.Format("{0:00}:{1:00}:{2:00}",
+                              elapsedTime.Hours,
+                              elapsedTime.Minutes,
+                              elapsedTime.Seconds);
             elapsedTimeDisplay.Text = timeString;
         }
 

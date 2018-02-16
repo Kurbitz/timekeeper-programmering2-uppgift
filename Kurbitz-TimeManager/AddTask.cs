@@ -24,8 +24,9 @@ namespace Kurbitz_TimeManager
             project.AddTask(txtName.Text);
             Task task = project.FindTask(txtName.Text);            
             TimeTaskForm ttm = new TimeTaskForm(project, task);
+            this.Close();
             ttm.ShowDialog();
-            Close();
+            
         }
     }
 }
