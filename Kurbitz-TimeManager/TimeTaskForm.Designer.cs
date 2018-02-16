@@ -35,9 +35,10 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(58, 165);
+            this.btnStart.Location = new System.Drawing.Point(77, 203);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 23);
+            this.btnStart.Size = new System.Drawing.Size(100, 28);
             this.btnStart.TabIndex = 0;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -47,18 +48,20 @@
             // 
             this.elapsedTimeDisplay.AutoSize = true;
             this.elapsedTimeDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.elapsedTimeDisplay.Location = new System.Drawing.Point(79, 70);
+            this.elapsedTimeDisplay.Location = new System.Drawing.Point(105, 86);
+            this.elapsedTimeDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.elapsedTimeDisplay.Name = "elapsedTimeDisplay";
-            this.elapsedTimeDisplay.Size = new System.Drawing.Size(120, 31);
+            this.elapsedTimeDisplay.Size = new System.Drawing.Size(149, 39);
             this.elapsedTimeDisplay.TabIndex = 1;
             this.elapsedTimeDisplay.Text = "00:00:00";
             // 
             // btnComplete
             // 
             this.btnComplete.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnComplete.Location = new System.Drawing.Point(139, 165);
+            this.btnComplete.Location = new System.Drawing.Point(185, 203);
+            this.btnComplete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnComplete.Name = "btnComplete";
-            this.btnComplete.Size = new System.Drawing.Size(75, 23);
+            this.btnComplete.Size = new System.Drawing.Size(100, 28);
             this.btnComplete.TabIndex = 2;
             this.btnComplete.Text = "Done!";
             this.btnComplete.UseVisualStyleBackColor = true;
@@ -66,14 +69,16 @@
             // 
             // TimeTaskForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 246);
+            this.ClientSize = new System.Drawing.Size(379, 303);
             this.Controls.Add(this.btnComplete);
             this.Controls.Add(this.elapsedTimeDisplay);
             this.Controls.Add(this.btnStart);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "TimeTaskForm";
             this.Text = "TimeTask";
+            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 

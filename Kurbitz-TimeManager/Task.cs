@@ -21,7 +21,7 @@ namespace Kurbitz_TimeManager
 
         public void AddTime(TimeSpan time)
         {
-            totalTime = time;
+            totalTime += time;
         }
 
         

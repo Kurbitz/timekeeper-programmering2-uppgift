@@ -15,6 +15,7 @@ namespace Kurbitz_TimeManager
     {
         Project project;
         Task task;
+        Form form;
         private Timer timer;
         TimeSpan elapsedTime;
         private Stopwatch watch;
@@ -23,11 +24,12 @@ namespace Kurbitz_TimeManager
         private bool timerRunning;
         private bool firstRun = true;
         
-        public TimeTaskForm(Project project, Task task)
+        public TimeTaskForm(Project project, Task task, Form1 form)
         {            
             InitializeComponent();
             this.project = project;
             this.task = task;
+            this.form = form;
 
             timer = new Timer();
             timer.Interval = 1000;
@@ -53,13 +55,29 @@ namespace Kurbitz_TimeManager
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            timer.Start();
-            watch.Start();
+            if (!watch.IsRunning)
+            {
+                timer.Start();
+                watch.Start();
+                btnStart.Text = "Stop";
+            }
+            else
+            {
+                timer.Stop();
+                watch.Stop();
+                btnStart.Text = "Start";
+            }
+
         }
 
         private void btnComplete_Click(object sender, EventArgs e)
         {
-      
+            timer.Stop();
+            watch.Stop();
+            
+            task.AddTime(elapsedTime);
+
+            this.Close();
         }
     }
 }

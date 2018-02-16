@@ -22,11 +22,8 @@ namespace Kurbitz_TimeManager
         private void btnAccept_Click(object sender, EventArgs e)
         {
             project.AddTask(txtName.Text);
-            Task task = project.FindTask(txtName.Text);            
-            TimeTaskForm ttm = new TimeTaskForm(project, task);
-            this.Close();
-            ttm.ShowDialog();
-            
+
+            this.Close();            
         }
     }
 }
