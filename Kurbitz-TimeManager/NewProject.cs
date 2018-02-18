@@ -10,20 +10,18 @@ using System.Windows.Forms;
 
 namespace Kurbitz_TimeManager
 {
-    public partial class AddTask : Form
+    public partial class NewProject : Form
     {
-        private ProjectMng project;
-        public AddTask(ProjectMng project)
+        public string ProjectName { get; set; }
+        public NewProject()
         {
             InitializeComponent();
-            this.project = project;
+            
         }
 
-        private void btnAccept_Click(object sender, EventArgs e)
+        public void btnAccept_Click(object sender, EventArgs e)
         {
-            project.AddTask(txtName.Text);
-
-            this.Close();            
+            ProjectName = lblName.Text;
         }
     }
 }

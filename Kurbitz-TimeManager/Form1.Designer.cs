@@ -33,6 +33,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.arkivToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nyttProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listViewTasks = new System.Windows.Forms.ListView();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -41,23 +42,20 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnAddTask);
-            this.groupBox1.Location = new System.Drawing.Point(16, 33);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(12, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(267, 357);
+            this.groupBox1.Size = new System.Drawing.Size(200, 290);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Controls";
             // 
             // btnAddTask
             // 
-            this.btnAddTask.Location = new System.Drawing.Point(8, 23);
-            this.btnAddTask.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddTask.Location = new System.Drawing.Point(6, 19);
             this.btnAddTask.Name = "btnAddTask";
-            this.btnAddTask.Size = new System.Drawing.Size(100, 28);
+            this.btnAddTask.Size = new System.Drawing.Size(75, 23);
             this.btnAddTask.TabIndex = 0;
-            this.btnAddTask.Text = "Add Task";
+            this.btnAddTask.Text = "Add TimeTask";
             this.btnAddTask.UseVisualStyleBackColor = true;
             this.btnAddTask.Click += new System.EventHandler(this.btnAddTask_Click);
             // 
@@ -68,33 +66,41 @@
             this.arkivToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(779, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(584, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // arkivToolStripMenuItem
             // 
             this.arkivToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nyttProjectToolStripMenuItem});
+            this.nyttProjectToolStripMenuItem,
+            this.saveToolStripMenuItem});
             this.arkivToolStripMenuItem.Name = "arkivToolStripMenuItem";
-            this.arkivToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
-            this.arkivToolStripMenuItem.Text = "Arkiv";
+            this.arkivToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.arkivToolStripMenuItem.Text = "File";
             // 
             // nyttProjectToolStripMenuItem
             // 
             this.nyttProjectToolStripMenuItem.Name = "nyttProjectToolStripMenuItem";
-            this.nyttProjectToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
-            this.nyttProjectToolStripMenuItem.Text = "Nytt project...";
+            this.nyttProjectToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.nyttProjectToolStripMenuItem.Text = "New project...";
             this.nyttProjectToolStripMenuItem.Click += new System.EventHandler(this.nyttProjectToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // listViewTasks
             // 
             this.listViewTasks.FullRowSelect = true;
-            this.listViewTasks.Location = new System.Drawing.Point(290, 40);
+            this.listViewTasks.Location = new System.Drawing.Point(218, 32);
+            this.listViewTasks.Margin = new System.Windows.Forms.Padding(2);
             this.listViewTasks.MultiSelect = false;
             this.listViewTasks.Name = "listViewTasks";
-            this.listViewTasks.Size = new System.Drawing.Size(456, 350);
+            this.listViewTasks.Size = new System.Drawing.Size(343, 285);
             this.listViewTasks.TabIndex = 3;
             this.listViewTasks.UseCompatibleStateImageBehavior = false;
             this.listViewTasks.View = System.Windows.Forms.View.Details;
@@ -102,16 +108,15 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(779, 753);
+            this.ClientSize = new System.Drawing.Size(584, 612);
             this.Controls.Add(this.listViewTasks);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "TimeManager";
             this.groupBox1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -127,6 +132,7 @@
         private System.Windows.Forms.ToolStripMenuItem arkivToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nyttProjectToolStripMenuItem;
         private System.Windows.Forms.ListView listViewTasks;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
     }
 }
 

@@ -12,11 +12,14 @@ namespace Kurbitz_TimeManager
 {
     public partial class Form1 : Form
     {
-        Project project;
+        Project projectSave;
+        ProjectMng mng;
         public Form1()
         {
             InitializeComponent();
             InitializeListView();
+            projectSave = new Project();
+            this.mng = new ProjectMng(projectSave);
             LoadData();
             UpdateList();        
             
@@ -25,7 +28,7 @@ namespace Kurbitz_TimeManager
         private void InitializeListView()
         {
 
-            listViewTasks.Columns.Add("Task", 170, HorizontalAlignment.Left);
+            listViewTasks.Columns.Add("TimeTask", 170, HorizontalAlignment.Left);
             listViewTasks.Columns.Add("Time spent", -2, HorizontalAlignment.Left);
             listViewTasks.Columns.Add("Date Created", -2, HorizontalAlignment.Left);
             var item1 = new ListViewItem(new[] {"Task1","00:04:20","16-02-18"});
@@ -34,28 +37,36 @@ namespace Kurbitz_TimeManager
 
         void LoadData()
         {
-            SaveLoad sl = new SaveLoad();
-            project = sl.LoadFromFile();
+            
         }
 
         public void UpdateList()
         {
             listViewTasks.Items.Clear();
-            List<Task> tasks = project.GetProjectTasks();
-
-            foreach (Task task in tasks)
+            List<TimeTask> tasks = mng.GetProjectTasks();
+            this.Text = projectSave.Name;
+            if (tasks != null)
             {
-                var listItem = new ListViewItem(new[] { task.Name,
-                    task.totalTime.ToString(),
+                foreach (TimeTask task in tasks)
+                {
+                    string timeString =
+                    string.Format("{0:00}:{1:00}:{2:00}",
+                                  task.totalTime.Hours,
+                                  task.totalTime.Minutes,
+                                  task.totalTime.Seconds);
+                    var listItem = new ListViewItem(new[] { task.Name,
+                    timeString,
                     task.DateCreated.ToShortDateString() + " " + task.DateCreated.ToShortTimeString() });
-                listViewTasks.Items.Add(listItem);
-                
+                    listViewTasks.Items.Add(listItem);
+
+                }
             }
+            
         }
 
         private void btnAddTask_Click(object sender, EventArgs e)
         {
-            AddTask at = new AddTask(project);
+            AddTask at = new AddTask(mng);
             at.ShowDialog();
 
             UpdateList();
@@ -63,18 +74,48 @@ namespace Kurbitz_TimeManager
 
         private void nyttProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // TODO Save before vreating new project
+            using (NewProject np = new NewProject())
+            {
+                DialogResult dr = np.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    Project newProject = CreateProject(np.ProjectName);
+                    ProjectMng projectMng = new ProjectMng(newProject);
+                    this.mng = projectMng;
+                    this.projectSave = newProject;
+                
+                }
+            }
 
+            UpdateList();            
+            
+        }
+
+        public Project CreateProject(string _name)
+        {
+            projectSave = new Project();
+            projectSave.Name = _name;
+            projectSave.DateCreated = DateTime.Now;
+            projectSave.TimeTaskList = new List<TimeTask>();
+            return projectSave;
         }
 
         private void listViewTasks_DoubleClick(object sender, EventArgs e)
         {
             if (listViewTasks.SelectedIndices.Count > 0 )
             {
-                Task task = project.GetTask(listViewTasks.SelectedIndices[0]);
-                TimeTaskForm ttm = new TimeTaskForm(project, task, this);
+                TimeTask task = mng.GetTask(listViewTasks.SelectedIndices[0]);
+                TimeTaskForm ttm = new TimeTaskForm(mng, task, this);
                 ttm.Show();
                 UpdateList();
             }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveLoad sl = new SaveLoad();
+            sl.SaveToFile(projectSave);
         }
     }
 }

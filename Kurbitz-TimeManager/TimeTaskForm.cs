@@ -13,22 +13,19 @@ namespace Kurbitz_TimeManager
 {
     public partial class TimeTaskForm : Form
     {
-        Project project;
-        Task task;
-        Form form;
+        private ProjectMng project;
+        private TimeTask timeTask;
+        private Form form;
         private Timer timer;
-        TimeSpan elapsedTime;
+        private TimeSpan elapsedTime;
         private Stopwatch watch;
-        private DateTime startTime;
         string timeString;
-        private bool timerRunning;
-        private bool firstRun = true;
         
-        public TimeTaskForm(Project project, Task task, Form1 form)
+        public TimeTaskForm(ProjectMng project, TimeTask timeTask, Form1 form)
         {            
             InitializeComponent();
             this.project = project;
-            this.task = task;
+            this.timeTask = timeTask;
             this.form = form;
 
             timer = new Timer();
@@ -42,9 +39,12 @@ namespace Kurbitz_TimeManager
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            elapsedTime = watch.Elapsed;
-            //timeString = elapsedTime.Hours.ToString() + ":" + elapsedTime.Minutes.ToString() + ":" + elapsedTime.Seconds.ToString();
+            UpdateTimer();
+        }
 
+        private void UpdateTimer()
+        {
+            elapsedTime = watch.Elapsed;
             timeString =
                 string.Format("{0:00}:{1:00}:{2:00}",
                               elapsedTime.Hours,
@@ -74,9 +74,11 @@ namespace Kurbitz_TimeManager
         {
             timer.Stop();
             watch.Stop();
-            
-            task.AddTime(elapsedTime);
 
+            
+            timeTask.AddTime(elapsedTime);
+            var mainForm = Application.OpenForms.OfType<Form1>().Single();
+            mainForm.UpdateList();
             this.Close();
         }
     }

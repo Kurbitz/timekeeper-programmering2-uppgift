@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Kurbitz_TimeManager
 {
-    public class Task
+    [Serializable]
+    public class TimeTask
     {
         public string Name { get; set; }
         public DateTime DateCreated { get; set; }
         public TimeSpan totalTime;
 
-        public Task(string name)
+        public TimeTask(string name)
         {
             Name = name;
             DateCreated = DateTime.Now;
