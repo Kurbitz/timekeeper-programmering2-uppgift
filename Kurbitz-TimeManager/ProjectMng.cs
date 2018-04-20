@@ -12,7 +12,6 @@ namespace Kurbitz_TimeManager
         private DateTime DateCreated;
         private List<TimeTask> taskList;
 
-        private bool onCreation = true;
 
         private Project projectSave;
 
@@ -20,7 +19,7 @@ namespace Kurbitz_TimeManager
         public ProjectMng(Project _projectSave)
         {
             this.projectSave = _projectSave;
-            if (onCreation)
+            if (Form1.OnCreation)
             {
                 Project project = CreateProject();
                 this.projectSave = project;
@@ -33,11 +32,19 @@ namespace Kurbitz_TimeManager
         public Project CreateProject(string _name = "Untitled")
         {
             projectSave = new Project();
+            List<TimeTask> newTimeTaskList = new List<TimeTask>();
             projectSave.Name = _name;
             projectSave.DateCreated = DateTime.Now;
-            projectSave.TimeTaskList = new List<TimeTask>();
-            onCreation = false;
+            projectSave.TimeTaskList = newTimeTaskList;
+            Form1.OnCreation = false;
             return projectSave;
+        }
+
+        public void SyncProject()
+        {
+            projectSave.Name = this.Name;
+            projectSave.TimeTaskList = this.taskList;
+            
         }
 
         public bool AddTask(string name)
@@ -49,14 +56,22 @@ namespace Kurbitz_TimeManager
             return true;
         }
 
+        public void RemoveTask()
+        {
+
+        }
+
         public TimeTask FindTask(string name)
         {
-            
-            foreach (TimeTask task in taskList)
+            if (taskList != null)
             {
-                if (task.Name == name)
-                    return task;
+                foreach (TimeTask task in taskList)
+                {
+                    if (task.Name == name)
+                        return task;
+                }
             }
+            
             return null;
         }
 

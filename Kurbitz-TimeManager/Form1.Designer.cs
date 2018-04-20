@@ -35,12 +35,15 @@
             this.nyttProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listViewTasks = new System.Windows.Forms.ListView();
+            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rmvBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.rmvBtn);
             this.groupBox1.Controls.Add(this.btnAddTask);
             this.groupBox1.Location = new System.Drawing.Point(12, 27);
             this.groupBox1.Name = "groupBox1";
@@ -74,7 +77,8 @@
             // 
             this.arkivToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nyttProjectToolStripMenuItem,
-            this.saveToolStripMenuItem});
+            this.saveToolStripMenuItem,
+            this.loadToolStripMenuItem});
             this.arkivToolStripMenuItem.Name = "arkivToolStripMenuItem";
             this.arkivToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.arkivToolStripMenuItem.Text = "File";
@@ -82,14 +86,14 @@
             // nyttProjectToolStripMenuItem
             // 
             this.nyttProjectToolStripMenuItem.Name = "nyttProjectToolStripMenuItem";
-            this.nyttProjectToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.nyttProjectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.nyttProjectToolStripMenuItem.Text = "New project...";
             this.nyttProjectToolStripMenuItem.Click += new System.EventHandler(this.nyttProjectToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -105,6 +109,23 @@
             this.listViewTasks.UseCompatibleStateImageBehavior = false;
             this.listViewTasks.View = System.Windows.Forms.View.Details;
             this.listViewTasks.DoubleClick += new System.EventHandler(this.listViewTasks_DoubleClick);
+            // 
+            // loadToolStripMenuItem
+            // 
+            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Text = "Load";
+            this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
+            // 
+            // rmvBtn
+            // 
+            this.rmvBtn.Location = new System.Drawing.Point(7, 49);
+            this.rmvBtn.Name = "rmvBtn";
+            this.rmvBtn.Size = new System.Drawing.Size(75, 23);
+            this.rmvBtn.TabIndex = 1;
+            this.rmvBtn.Text = "Remove";
+            this.rmvBtn.UseVisualStyleBackColor = true;
+            this.rmvBtn.Click += new System.EventHandler(this.rmvBtn_Click);
             // 
             // Form1
             // 
@@ -133,6 +154,8 @@
         private System.Windows.Forms.ToolStripMenuItem nyttProjectToolStripMenuItem;
         private System.Windows.Forms.ListView listViewTasks;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
+        private System.Windows.Forms.Button rmvBtn;
     }
 }
 

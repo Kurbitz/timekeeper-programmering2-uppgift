@@ -14,8 +14,10 @@ namespace Kurbitz_TimeManager
     {
         Project projectSave;
         ProjectMng mng;
+        static public bool OnCreation { get; set; }
         public Form1()
         {
+            OnCreation = true;
             InitializeComponent();
             InitializeListView();
             projectSave = new Project();
@@ -61,7 +63,6 @@ namespace Kurbitz_TimeManager
 
                 }
             }
-            
         }
 
         private void btnAddTask_Click(object sender, EventArgs e)
@@ -94,11 +95,11 @@ namespace Kurbitz_TimeManager
 
         public Project CreateProject(string _name)
         {
-            projectSave = new Project();
-            projectSave.Name = _name;
-            projectSave.DateCreated = DateTime.Now;
-            projectSave.TimeTaskList = new List<TimeTask>();
-            return projectSave;
+            Project newProjectSave = new Project();
+            newProjectSave.Name = _name;
+            newProjectSave.DateCreated = DateTime.Now;
+            newProjectSave.TimeTaskList = new List<TimeTask>();
+            return newProjectSave;
         }
 
         private void listViewTasks_DoubleClick(object sender, EventArgs e)
@@ -115,7 +116,26 @@ namespace Kurbitz_TimeManager
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveLoad sl = new SaveLoad();
-            sl.SaveToFile(projectSave);
+            sl.SaveToFile(projectSave, projectSave.Name);
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.InitialDirectory = "c:\\";
+            fileDialog.Filter = "Project data files|*.dat";
+            fileDialog.Title = "Select a project file";
+            fileDialog.RestoreDirectory = true;
+            if(fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                SaveLoad sl = new SaveLoad();
+                this.Text = fileDialog.FileName;
+            }
+        }
+
+        private void rmvBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

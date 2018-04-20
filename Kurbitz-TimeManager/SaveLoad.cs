@@ -8,57 +8,27 @@ using System.Threading.Tasks;
 
 namespace Kurbitz_TimeManager
 {
-    class SaveLoad
+    public class SaveLoad
     {
-        private const string DEFAULT_FILENAME = "Time_Manager_Project";
-        string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TimeManager") + DEFAULT_FILENAME + ".xml";
-        private Project project = new Project();
+        string path = "C:\\C# Files\\data.dat";
 
 
-        public void SaveToFile(Project project)
+        public void SaveToFile(Project project, string fileName = "Time_Manager_Project", bool append = false)
         {
-            System.IO.StreamWriter sw = System.IO.File.CreateText(path);
-           
-            if (project.GetType().IsSerializable)
+            using (Stream stream = File.Open(path, append ? FileMode.Append : FileMode.Create))
             {
-                System.Xml.Serialization.XmlSerializer xsSerializer = new System.Xml.Serialization.XmlSerializer(project.GetType());
-                xsSerializer.Serialize(sw, project);
-                sw.Close();
+                var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                binaryFormatter.Serialize(stream, project);
             }
-            //fileName = project.Name + ".dat";
-            //using (Stream stream = File.Open(path, FileMode.Create, FileAccess.Write))
-            //{
-            //    BinaryFormatter bf = new BinaryFormatter();
-            //    bf.Serialize(stream, project);
-            //}
         }
 
-        public Project LoadFromFile()
+        public Project LoadFromFile(string filePath)
         {
-            if (System.IO.File.Exists(path))
+            using (Stream stream = File.Open(filePath, FileMode.Open))
             {
-                System.IO.StreamReader sr = System.IO.File.OpenText(path);
-                System.Xml.Serialization.XmlSerializer xsSerializer = new System.Xml.Serialization.XmlSerializer(project.GetType());
-                object loadData = xsSerializer.Deserialize(sr);
-                project = (Project)loadData;
-                sr.Close();
-                return project;
-            }
-            return project;
-            //Project project = null;
-            //try
-            //{
-            //    using(Stream stream = File.Open(path, FileMode.Open))
-            //    {
-            //        BinaryFormatter bf = new BinaryFormatter();
-            //        project = (Project)bf.Deserialize(stream);
-            //    }
-            //}
-            //catch(IOException e)
-            //{
-            //    project = new Project("Untitled");
-            //}
-            //return project;
+                var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                return (Project)binaryFormatter.Deserialize(stream);
+            }            
         }
     }
 }

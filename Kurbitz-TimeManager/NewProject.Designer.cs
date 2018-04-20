@@ -62,7 +62,6 @@
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(69, 13);
             this.lblName.TabIndex = 2;
-            this.lblName.Text = "Project name";
             // 
             // textBox1
             // 
